@@ -39,25 +39,26 @@ public class TimetableController extends HttpServlet {
     }
     
     void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int id = Integer.parseInt(req.getParameter("id"));
-        String w = req.getParameter("week");
-        DateTimeHelper dth = new DateTimeHelper();
-        WeekDBContext wdb = new WeekDBContext();
-        ArrayList<Week> week = wdb.list();
-        Week now = new Week();
-        if (w == null) {
-            now = wdb.get(Date.valueOf(LocalDate.now()));
-        } else {
-            now = wdb.get(Integer.parseInt(w));
-        }
-        StudentDBContext sdb = new StudentDBContext();
-        Student s = sdb.get(id);
-        ArrayList<Date> day = dth.getDate(now.getFrom(), now.getTo());
-        req.setAttribute("student", s);
-        req.setAttribute("day", day);
-        req.setAttribute("student", s);
-        req.setAttribute("now", now.getWeek());
-        req.setAttribute("week", week);
-        req.getRequestDispatcher("../view/student/timetable.jsp").forward(req, resp);
+//        int id = Integer.parseInt(req.getParameter("id"));
+//        String w = req.getParameter("week");
+//        DateTimeHelper dth = new DateTimeHelper();
+//        WeekDBContext wdb = new WeekDBContext();
+//        ArrayList<Week> week = wdb.list();
+//        Week now = new Week();
+//        if (w == null) {
+//            now = wdb.get(Date.valueOf(LocalDate.now()));
+//        } else {
+//            now = wdb.get(Integer.parseInt(w));
+//        }
+//        StudentDBContext sdb = new StudentDBContext();
+//        Student s = sdb.get(id);
+//        ArrayList<Date> day = dth.getDate(now.getFrom(), now.getTo());
+//        req.setAttribute("student", s);
+//        req.setAttribute("day", day);
+//        req.setAttribute("student", s);
+//        req.setAttribute("now", now.getWeek());
+//        req.setAttribute("week", week);
+//        req.getRequestDispatcher("../view/student/timetable.jsp").forward(req, resp);
+            resp.getWriter().print(req.getSession().getAttribute("account"));
     }
 }

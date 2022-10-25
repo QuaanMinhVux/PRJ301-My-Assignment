@@ -16,6 +16,15 @@ public class Student {
     private String name;
     private ArrayList<Group> group = new ArrayList<>();
     private ArrayList<Attendance> att;
+    private Account account;
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
 
     public int getId() {
         return id;

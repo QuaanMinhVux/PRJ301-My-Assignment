@@ -89,6 +89,7 @@ public class StudentDBContext extends DBContext<Student> {
                     + "inner join TimeSlot t on t.tid = se.tid";
             PreparedStatement stm_se = connection.prepareStatement(sql1);
             ResultSet rs_se = stm_se.executeQuery();
+            
                 while (rs_se.next()) {
                     for (Group group : s.getGroup()) {
                         if (group.getId() == rs_se.getInt("gid")) {
@@ -123,7 +124,8 @@ public class StudentDBContext extends DBContext<Student> {
         }
         return s;
     }
-
+    
+    
     @Override
     public ArrayList<Student> list() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

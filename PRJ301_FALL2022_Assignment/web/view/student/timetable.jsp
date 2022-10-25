@@ -55,7 +55,7 @@
                             <c:forEach items="${g.sessions}" var="s">
                                 <c:if test="${s.date eq requestScope.day.get(0)}">
                                     <c:if test="${s.t.id eq 1}">
-                                        <a href="#">${g.subject.name} at ${s.room.name}</a>
+                                        <a href="#">${g.subject.name} at ${s.room.name}</a>     
                                     </c:if>
                                 </c:if>
                             </c:forEach>

@@ -4,11 +4,13 @@
  */
 package controller.login;
 
+import dal.AccountDBContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import model.Account;
 
 /**
  *
@@ -18,19 +20,27 @@ public class LoginController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String id = req.getParameter("id");
-        String role = req.getParameter("role");
-        if (id != null && !id.equals("")) {
-            if (role.equals("student")) {
-               resp.sendRedirect("student/timetable?id=" + id +"&role=" + role);
-            }
-        } else {
-            resp.sendRedirect("index.html");
-        }
+        processRequest(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        processRequest(req, resp);
     }
-
+void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+    String username = req.getParameter("username");
+        String password = req.getParameter("password");
+        AccountDBContext db = new AccountDBContext();
+        Account account = db.get(username, password);
+        if(account!=null)
+        {
+            req.getSession().setAttribute("account", account);
+//            req.getRequestDispatcher("/student/timetable").forward(req, resp);
+resp.sendRedirect("student/timetable");
+        }
+        else
+        {
+            req.getRequestDispatcher("index.html").forward(req, resp);
+        }
+}
 }
