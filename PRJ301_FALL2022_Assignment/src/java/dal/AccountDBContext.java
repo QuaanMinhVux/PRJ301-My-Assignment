@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Account;
+import model.Role;
 import model.Student;
 
 /**
@@ -23,43 +24,51 @@ public class AccountDBContext extends DBContext<Account> {
         PreparedStatement stm = null;
         ResultSet rs = null;
         try {
-            String sql = "select a.username, a.[password], a.displayname, s.stdid, s.stdname from [Account] a inner join [Student] s on a.username = s.username\n"
-                    + "where a.username = ? and a.[password] = ?";
+            String sql = "select a.username, a.displayname, r.rid, r.rname, f.fid, f.fname, f.url\n"
+                    + "from [Account] a left join [Role] r on r.rid = a.rid\n"
+                    + "left join [Role_Feature] rf on rf.rid = r.rid\n"
+                    + "left join [Feature] f on f.fid = rf.fid\n"
+                    + "where a.username = ? and a.password = ?";
             stm = connection.prepareStatement(sql);
             stm.setString(1, username);
             stm.setString(2, password);
             rs = stm.executeQuery();
-            if(rs.next()){
-                Account acc = new Account();
-                acc.setUsername(rs.getString("username"));
-                acc.setPassword(rs.getString("password"));
-                acc.setDisplayname(rs.getString("displayname"));
-                
-                Student s = new Student();
-                s.setId(rs.getInt("stdid"));
-                s.setName("stdname");
-                
-                acc.setStudent(s);
-                return acc;
+            Account acc = null;
+            Role currentRole = new Role();
+            currentRole.setRid(-1);
+            while(rs.next()){
+                if(acc == null){
+                    acc = new Account();
+                    acc.setUsername(rs.getString("username"));
+                    acc.setDisplayname(rs.getString("displayname"));
+                    Role r = new Role();
+                    r.setRid(rs.getInt("rid"));
+                    r.setRname(rs.getString("rname"));
+                    acc.setRole(currentRole);
+                }
+                int fid = rs.getInt("fid");
+                if(fid != 0){
+                    
+                }
             }
         } catch (SQLException ex) {
             Logger.getLogger(AccountDBContext.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
-            if(rs!=null)
+        } finally {
+            if (rs != null)
                 try {
-                    rs.close();
+                rs.close();
             } catch (SQLException ex) {
                 Logger.getLogger(AccountDBContext.class.getName()).log(Level.SEVERE, null, ex);
             }
-            if(stm != null)
+            if (stm != null)
                 try {
-                    stm.close();
+                stm.close();
             } catch (SQLException ex) {
                 Logger.getLogger(AccountDBContext.class.getName()).log(Level.SEVERE, null, ex);
             }
-            if(connection != null)
+            if (connection != null)
                 try {
-                    connection.close();
+                connection.close();
             } catch (SQLException ex) {
                 Logger.getLogger(AccountDBContext.class.getName()).log(Level.SEVERE, null, ex);
             }

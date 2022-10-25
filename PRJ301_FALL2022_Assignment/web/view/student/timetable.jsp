@@ -17,7 +17,7 @@
         <p>Name: ${requestScope.student.name}</p>
         <p>Role: Student</p>
         <p>Week:
-        <form action="timetable" method="GET">
+        <form action="timetable" method="POST">
             <input type="hidden" name="id" value="${param.id}"/>
             <select name="week">
                 <c:forEach items="${requestScope.week}" var="w">
@@ -586,6 +586,7 @@
                 </tr>
             </tbody>
         </table>
-
+            <a href="../logout">Log Out</a>
+            
     </body>
 </html>

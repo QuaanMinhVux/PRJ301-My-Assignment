@@ -27,20 +27,18 @@ public class LoginController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         processRequest(req, resp);
     }
-void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
-    String username = req.getParameter("username");
+
+    void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String username = req.getParameter("username");
         String password = req.getParameter("password");
         AccountDBContext db = new AccountDBContext();
         Account account = db.get(username, password);
-        if(account!=null)
-        {
+        if (account != null) {
             req.getSession().setAttribute("account", account);
 //            req.getRequestDispatcher("/student/timetable").forward(req, resp);
-resp.sendRedirect("student/timetable");
-        }
-        else
-        {
+            resp.sendRedirect("student/timetable");
+        } else {
             req.getRequestDispatcher("index.html").forward(req, resp);
         }
-}
+    }
 }
