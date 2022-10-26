@@ -20,7 +20,7 @@ public class Session {
     private int index;
     private Lecture lecture;
     private Week w;
-    private ArrayList<Attendance> att;
+    private ArrayList<Attendance> att = new ArrayList<>();
     private boolean attended;
 
     public Week getW() {

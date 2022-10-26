@@ -13,7 +13,16 @@ import java.util.ArrayList;
 public class Subject {
     private int id;
     private String name;
+    private int slot;
     private ArrayList<Group> group;
+
+    public int getSlot() {
+        return slot;
+    }
+
+    public void setSlot(int slot) {
+        this.slot = slot;
+    }
 
     public int getId() {
         return id;

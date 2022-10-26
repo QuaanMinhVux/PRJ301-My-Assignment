@@ -55,7 +55,7 @@
                             <c:forEach items="${g.sessions}" var="s">
                                 <c:if test="${s.date eq requestScope.day.get(0)}">
                                     <c:if test="${s.t.id eq 1}">
-                                        <a href="#">${g.subject.name} at ${s.room.name}</a>     
+                                        <a href="../student/attendance?id=${g.id}">${g.subject.name} at ${s.room.name}</a>     
                                     </c:if>
                                 </c:if>
                             </c:forEach>
@@ -67,7 +67,7 @@
                             <c:forEach items="${g.sessions}" var="s">
                                 <c:if test="${s.date eq requestScope.day.get(1)}">
                                     <c:if test="${s.t.id eq 1}">
-                                        <a href="#">${g.subject.name} at ${s.room.name}</a>
+                                        <a href="../student/attendance?id=${g.id}">${g.subject.name} at ${s.room.name}</a>
                                     </c:if>
                                 </c:if>
                             </c:forEach>
@@ -79,7 +79,7 @@
                             <c:forEach items="${g.sessions}" var="s">
                                 <c:if test="${s.date eq requestScope.day.get(2)}">
                                     <c:if test="${s.t.id eq 1}">
-                                        <a href="#">${g.subject.name} at ${s.room.name}</a>
+                                        <a href="../student/attendance?id=${g.id}">${g.subject.name} at ${s.room.name}</a>
                                     </c:if>
                                 </c:if>
                             </c:forEach>
@@ -91,7 +91,7 @@
                             <c:forEach items="${g.sessions}" var="s">
                                 <c:if test="${s.date eq requestScope.day.get(3)}">
                                     <c:if test="${s.t.id eq 1}">
-                                        <a href="#">${g.subject.name} at ${s.room.name}</a>
+                                        <a href="../student/attendance?id=${g.id}">${g.subject.name} at ${s.room.name}</a>
                                     </c:if>
                                 </c:if>
                             </c:forEach>
@@ -103,7 +103,7 @@
                             <c:forEach items="${g.sessions}" var="s">
                                 <c:if test="${s.date eq requestScope.day.get(4)}">
                                     <c:if test="${s.t.id eq 1}">
-                                        <a href="#">${g.subject.name} at ${s.room.name}</a>
+                                        <a href="../student/attendance?id=${g.id}">${g.subject.name} at ${s.room.name}</a>
                                     </c:if>
                                 </c:if>
                             </c:forEach>
@@ -115,7 +115,7 @@
                             <c:forEach items="${g.sessions}" var="s">
                                 <c:if test="${s.date eq requestScope.day.get(5)}">
                                     <c:if test="${s.t.id eq 1}">
-                                        <a href="#">${g.subject.name} at ${s.room.name}</a>
+                                        <a href="../student/attendance?id=${g.id}">${g.subject.name} at ${s.room.name}</a>
                                     </c:if>
                                 </c:if>
                             </c:forEach>
@@ -127,7 +127,7 @@
                             <c:forEach items="${g.sessions}" var="s">
                                 <c:if test="${s.date eq requestScope.day.get(6)}">
                                     <c:if test="${s.t.id eq 1}">
-                                        <a href="#">${g.subject.name} at ${s.room.name}</a>
+                                        <a href="../student/attendance?id=${g.id}">${g.subject.name} at ${s.room.name}</a>
                                     </c:if>
                                 </c:if>
                             </c:forEach>
@@ -145,7 +145,7 @@
                             <c:forEach items="${g.sessions}" var="s">
                                 <c:if test="${s.date eq requestScope.day.get(0)}">
                                     <c:if test="${s.t.id eq 2}">
-                                        <a href="#">${g.subject.name} at ${s.room.name}</a>
+                                        <a href="../student/attendance?id=${g.id}">${g.subject.name} at ${s.room.name}</a>
                                     </c:if>
                                 </c:if>
                             </c:forEach>
@@ -157,7 +157,7 @@
                             <c:forEach items="${g.sessions}" var="s">
                                 <c:if test="${s.date eq requestScope.day.get(1)}">
                                     <c:if test="${s.t.id eq 2}">
-                                        <a href="#">${g.subject.name} at ${s.room.name}</a>
+                                        <a href="../student/attendance?id=${g.id}">${g.subject.name} at ${s.room.name}</a>
                                     </c:if>
                                 </c:if>
                             </c:forEach>
@@ -169,7 +169,7 @@
                             <c:forEach items="${g.sessions}" var="s">
                                 <c:if test="${s.date eq requestScope.day.get(2)}">
                                     <c:if test="${s.t.id eq 2}">
-                                        <a href="#">${g.subject.name} at ${s.room.name}</a>
+                                        <a href="../student/attendance?id=${g.id}">${g.subject.name} at ${s.room.name}</a>
                                     </c:if>
                                 </c:if>
                             </c:forEach>
@@ -181,7 +181,7 @@
                             <c:forEach items="${g.sessions}" var="s">
                                 <c:if test="${s.date eq requestScope.day.get(3)}">
                                     <c:if test="${s.t.id eq 2}">
-                                        <a href="#">${g.subject.name} at ${s.room.name}</a>
+                                        <a href="../student/attendance?id=${g.id}">${g.subject.name} at ${s.room.name}</a>
                                     </c:if>
                                 </c:if>
                             </c:forEach>
@@ -193,7 +193,7 @@
                             <c:forEach items="${g.sessions}" var="s">
                                 <c:if test="${s.date eq requestScope.day.get(4)}">
                                     <c:if test="${s.t.id eq 2}">
-                                        <a href="#">${g.subject.name} at ${s.room.name}</a>
+                                        <a href="../student/attendance?id=${g.id}">${g.subject.name} at ${s.room.name}</a>
                                     </c:if>
                                 </c:if>
                             </c:forEach>
@@ -205,7 +205,7 @@
                             <c:forEach items="${g.sessions}" var="s">
                                 <c:if test="${s.date eq requestScope.day.get(5)}">
                                     <c:if test="${s.t.id eq 2}">
-                                        <a href="#">${g.subject.name} at ${s.room.name}</a>
+                                        <a href="../student/attendance?id=${g.id}">${g.subject.name} at ${s.room.name}</a>
                                     </c:if>
                                 </c:if>
                             </c:forEach>
@@ -217,7 +217,7 @@
                             <c:forEach items="${g.sessions}" var="s">
                                 <c:if test="${s.date eq requestScope.day.get(6)}">
                                     <c:if test="${s.t.id eq 2}">
-                                        <a href="#">${g.subject.name} at ${s.room.name}</a>
+                                        <a href="../student/attendance?id=${g.id}">${g.subject.name} at ${s.room.name}</a>
                                     </c:if>
                                 </c:if>
                             </c:forEach>
@@ -235,7 +235,7 @@
                             <c:forEach items="${g.sessions}" var="s">
                                 <c:if test="${s.date eq requestScope.day.get(0)}">
                                     <c:if test="${s.t.id eq 3}">
-                                        <a href="#">${g.subject.name} at ${s.room.name}</a>
+                                        <a href="../student/attendance?id=${g.id}">${g.subject.name} at ${s.room.name}</a>
                                     </c:if>
                                 </c:if>
                             </c:forEach>
@@ -247,7 +247,7 @@
                             <c:forEach items="${g.sessions}" var="s">
                                 <c:if test="${s.date eq requestScope.day.get(1)}">
                                     <c:if test="${s.t.id eq 3}">
-                                        <a href="#">${g.subject.name} at ${s.room.name}</a>
+                                        <a href="../student/attendance?id=${g.id}">${g.subject.name} at ${s.room.name}</a>
                                     </c:if>
                                 </c:if>
                             </c:forEach>
@@ -259,7 +259,7 @@
                             <c:forEach items="${g.sessions}" var="s">
                                 <c:if test="${s.date eq requestScope.day.get(2)}">
                                     <c:if test="${s.t.id eq 3}">
-                                        <a href="#">${g.subject.name} at ${s.room.name}</a>
+                                        <a href="../student/attendance?id=${g.id}">${g.subject.name} at ${s.room.name}</a>
                                     </c:if>
                                 </c:if>
                             </c:forEach>
@@ -271,7 +271,7 @@
                             <c:forEach items="${g.sessions}" var="s">
                                 <c:if test="${s.date eq requestScope.day.get(3)}">
                                     <c:if test="${s.t.id eq 3}">
-                                        <a href="#">${g.subject.name} at ${s.room.name}</a>
+                                        <a href="../student/attendance?id=${g.id}">${g.subject.name} at ${s.room.name}</a>
                                     </c:if>
                                 </c:if>
                             </c:forEach>
@@ -283,7 +283,7 @@
                             <c:forEach items="${g.sessions}" var="s">
                                 <c:if test="${s.date eq requestScope.day.get(4)}">
                                     <c:if test="${s.t.id eq 3}">
-                                        <a href="#">${g.subject.name} at ${s.room.name}</a>
+                                        <a href="../student/attendance?id=${g.id}">${g.subject.name} at ${s.room.name}</a>
                                     </c:if>
                                 </c:if>
                             </c:forEach>
@@ -295,7 +295,7 @@
                             <c:forEach items="${g.sessions}" var="s">
                                 <c:if test="${s.date eq requestScope.day.get(5)}">
                                     <c:if test="${s.t.id eq 3}">
-                                        <a href="#">${g.subject.name} at ${s.room.name}</a>
+                                        <a href="../student/attendance?id=${g.id}">${g.subject.name} at ${s.room.name}</a>
                                     </c:if>
                                 </c:if>
                             </c:forEach>
@@ -307,7 +307,7 @@
                             <c:forEach items="${g.sessions}" var="s">
                                 <c:if test="${s.date eq requestScope.day.get(6)}">
                                     <c:if test="${s.t.id eq 3}">
-                                        <a href="#">${g.subject.name} at ${s.room.name}</a>
+                                        <a href="../student/attendance?id=${g.id}">${g.subject.name} at ${s.room.name}</a>
                                     </c:if>
                                 </c:if>
                             </c:forEach>
@@ -325,7 +325,7 @@
                             <c:forEach items="${g.sessions}" var="s">
                                 <c:if test="${s.date eq requestScope.day.get(0)}">
                                     <c:if test="${s.t.id eq 4}">
-                                        <a href="#">${g.subject.name} at ${s.room.name}</a>
+                                        <a href="../student/attendance?id=${g.id}">${g.subject.name} at ${s.room.name}</a>
                                     </c:if>
                                 </c:if>
                             </c:forEach>
@@ -337,7 +337,7 @@
                             <c:forEach items="${g.sessions}" var="s">
                                 <c:if test="${s.date eq requestScope.day.get(1)}">
                                     <c:if test="${s.t.id eq 4}">
-                                        <a href="#">${g.subject.name} at ${s.room.name}</a>
+                                        <a href="../student/attendance?id=${g.id}">${g.subject.name} at ${s.room.name}</a>
                                     </c:if>
                                 </c:if>
                             </c:forEach>
@@ -349,7 +349,7 @@
                             <c:forEach items="${g.sessions}" var="s">
                                 <c:if test="${s.date eq requestScope.day.get(2)}">
                                     <c:if test="${s.t.id eq 4}">
-                                        <a href="#">${g.subject.name} at ${s.room.name}</a>
+                                        <a href="../student/attendance?id=${g.id}">${g.subject.name} at ${s.room.name}</a>
                                     </c:if>
                                 </c:if>
                             </c:forEach>
@@ -361,7 +361,7 @@
                             <c:forEach items="${g.sessions}" var="s">
                                 <c:if test="${s.date eq requestScope.day.get(3)}">
                                     <c:if test="${s.t.id eq 4}">
-                                        <a href="#">${g.subject.name} at ${s.room.name}</a>
+                                        <a href="../student/attendance?id=${g.id}">${g.subject.name} at ${s.room.name}</a>
                                     </c:if>
                                 </c:if>
                             </c:forEach>
@@ -373,7 +373,7 @@
                             <c:forEach items="${g.sessions}" var="s">
                                 <c:if test="${s.date eq requestScope.day.get(4)}">
                                     <c:if test="${s.t.id eq 4}">
-                                        <a href="#">${g.subject.name} at ${s.room.name}</a>
+                                        <a href="../student/attendance?id=${g.id}">${g.subject.name} at ${s.room.name}</a>
                                     </c:if>
                                 </c:if>
                             </c:forEach>
@@ -385,7 +385,7 @@
                             <c:forEach items="${g.sessions}" var="s">
                                 <c:if test="${s.date eq requestScope.day.get(5)}">
                                     <c:if test="${s.t.id eq 4}">
-                                        <a href="#">${g.subject.name} at ${s.room.name}</a>
+                                        <a href="../student/attendance?id=${g.id}">${g.subject.name} at ${s.room.name}</a>
                                     </c:if>
                                 </c:if>
                             </c:forEach>
@@ -397,7 +397,7 @@
                             <c:forEach items="${g.sessions}" var="s">
                                 <c:if test="${s.date eq requestScope.day.get(6)}">
                                     <c:if test="${s.t.id eq 4}">
-                                        <a href="#">${g.subject.name} at ${s.room.name}</a>
+                                        <a href="../student/attendance?id=${g.id}">${g.subject.name} at ${s.room.name}</a>
                                     </c:if>
                                 </c:if>
                             </c:forEach>
@@ -415,7 +415,7 @@
                             <c:forEach items="${g.sessions}" var="s">
                                 <c:if test="${s.date eq requestScope.day.get(0)}">
                                     <c:if test="${s.t.id eq 5}">
-                                        <a href="#">${g.subject.name} at ${s.room.name}</a>
+                                        <a href="../student/attendance?id=${g.id}">${g.subject.name} at ${s.room.name}</a>
                                     </c:if>
                                 </c:if>
                             </c:forEach>
@@ -427,7 +427,7 @@
                             <c:forEach items="${g.sessions}" var="s">
                                 <c:if test="${s.date eq requestScope.day.get(1)}">
                                     <c:if test="${s.t.id eq 5}">
-                                        <a href="#">${g.subject.name} at ${s.room.name}</a>
+                                        <a href="../student/attendance?id=${g.id}">${g.subject.name} at ${s.room.name}</a>
                                     </c:if>
                                 </c:if>
                             </c:forEach>
@@ -439,7 +439,7 @@
                             <c:forEach items="${g.sessions}" var="s">
                                 <c:if test="${s.date eq requestScope.day.get(2)}">
                                     <c:if test="${s.t.id eq 5}">
-                                        <a href="#">${g.subject.name} at ${s.room.name}</a>
+                                        <a href="../student/attendance?id=${g.id}">${g.subject.name} at ${s.room.name}</a>
                                     </c:if>
                                 </c:if>
                             </c:forEach>
@@ -451,7 +451,7 @@
                             <c:forEach items="${g.sessions}" var="s">
                                 <c:if test="${s.date eq requestScope.day.get(3)}">
                                     <c:if test="${s.t.id eq 5}">
-                                        <a href="#">${g.subject.name} at ${s.room.name}</a>
+                                        <a href="../student/attendance?id=${g.id}">${g.subject.name} at ${s.room.name}</a>
                                     </c:if>
                                 </c:if>
                             </c:forEach>
@@ -463,7 +463,7 @@
                             <c:forEach items="${g.sessions}" var="s">
                                 <c:if test="${s.date eq requestScope.day.get(4)}">
                                     <c:if test="${s.t.id eq 5}">
-                                        <a href="#">${g.subject.name} at ${s.room.name}</a>
+                                        <a href="../student/attendance?id=${g.id}">${g.subject.name} at ${s.room.name}</a>
                                     </c:if>
                                 </c:if>
                             </c:forEach>
@@ -475,7 +475,7 @@
                             <c:forEach items="${g.sessions}" var="s">
                                 <c:if test="${s.date eq requestScope.day.get(5)}">
                                     <c:if test="${s.t.id eq 5}">
-                                        <a href="#">${g.subject.name} at ${s.room.name}</a>
+                                        <a href="../student/attendance?id=${g.id}">${g.subject.name} at ${s.room.name}</a>
                                     </c:if>
                                 </c:if>
                             </c:forEach>
@@ -487,7 +487,7 @@
                             <c:forEach items="${g.sessions}" var="s">
                                 <c:if test="${s.date eq requestScope.day.get(6)}">
                                     <c:if test="${s.t.id eq 5}">
-                                        <a href="#">${g.subject.name} at ${s.room.name}</a>
+                                        <a href="../student/attendance?id=${g.id}">${g.subject.name} at ${s.room.name}</a>
                                     </c:if>
                                 </c:if>
                             </c:forEach>
@@ -505,7 +505,7 @@
                             <c:forEach items="${g.sessions}" var="s">
                                 <c:if test="${s.date eq requestScope.day.get(0)}">
                                     <c:if test="${s.t.id eq 6}">
-                                        <a href="#">${g.subject.name} at ${s.room.name}</a>
+                                        <a href="../student/attendance?id=${g.id}">${g.subject.name} at ${s.room.name}</a>
                                     </c:if>
                                 </c:if>
                             </c:forEach>
@@ -517,7 +517,7 @@
                             <c:forEach items="${g.sessions}" var="s">
                                 <c:if test="${s.date eq requestScope.day.get(1)}">
                                     <c:if test="${s.t.id eq 6}">
-                                        <a href="#">${g.subject.name} at ${s.room.name}</a>
+                                        <a href="../student/attendance?id=${g.id}">${g.subject.name} at ${s.room.name}</a>
                                     </c:if>
                                 </c:if>
                             </c:forEach>
@@ -529,7 +529,7 @@
                             <c:forEach items="${g.sessions}" var="s">
                                 <c:if test="${s.date eq requestScope.day.get(2)}">
                                     <c:if test="${s.t.id eq 6}">
-                                        <a href="#">${g.subject.name} at ${s.room.name}</a>
+                                        <a href="../student/attendance?id=${g.id}">${g.subject.name} at ${s.room.name}</a>
                                     </c:if>
                                 </c:if>
                             </c:forEach>
@@ -541,7 +541,7 @@
                             <c:forEach items="${g.sessions}" var="s">
                                 <c:if test="${s.date eq requestScope.day.get(3)}">
                                     <c:if test="${s.t.id eq 6}">
-                                        <a href="#">${g.subject.name} at ${s.room.name}</a>
+                                        <a href="../student/attendance?id=${g.id}">${g.subject.name} at ${s.room.name}</a>
                                     </c:if>
                                 </c:if>
                             </c:forEach>
@@ -553,7 +553,7 @@
                             <c:forEach items="${g.sessions}" var="s">
                                 <c:if test="${s.date eq requestScope.day.get(4)}">
                                     <c:if test="${s.t.id eq 6}">
-                                        <a href="#">${g.subject.name} at ${s.room.name}</a>
+                                        <a href="../student/attendance?id=${g.id}">${g.subject.name} at ${s.room.name}</a>
                                     </c:if>
                                 </c:if>
                             </c:forEach>
@@ -565,7 +565,7 @@
                             <c:forEach items="${g.sessions}" var="s">
                                 <c:if test="${s.date eq requestScope.day.get(5)}">
                                     <c:if test="${s.t.id eq 6}">
-                                        <a href="#">${g.subject.name} at ${s.room.name}</a>
+                                        <a href="../student/attendance?id=${g.id}">${g.subject.name} at ${s.room.name}</a>
                                     </c:if>
                                 </c:if>
                             </c:forEach>
@@ -577,7 +577,7 @@
                             <c:forEach items="${g.sessions}" var="s">
                                 <c:if test="${s.date eq requestScope.day.get(6)}">
                                     <c:if test="${s.t.id eq 6}">
-                                        <a href="#">${g.subject.name} at ${s.room.name}</a>
+                                        <a href="../student/attendance?id=${g.id}">${g.subject.name} at ${s.room.name}</a>
                                     </c:if>
                                 </c:if>
                             </c:forEach>
