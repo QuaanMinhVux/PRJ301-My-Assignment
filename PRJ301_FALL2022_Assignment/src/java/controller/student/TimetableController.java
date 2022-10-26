@@ -5,6 +5,7 @@
 package controller.student;
 
 import controller.login.BaseAuthenticationController;
+import controller.login.BaseRoleAuthentication;
 import dal.StudentDBContext;
 import dal.WeekDBContext;
 import jakarta.servlet.ServletException;
@@ -26,7 +27,7 @@ import util.DateTimeHelper;
  *
  * @author MSI_GF63
  */
-public class TimetableController extends BaseAuthenticationController {
+public class TimetableController extends BaseRoleAuthentication {
 
     void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Account acc = (Account) req.getSession().getAttribute("account");
@@ -51,13 +52,11 @@ public class TimetableController extends BaseAuthenticationController {
         req.getRequestDispatcher("../view/student/timetable.jsp").forward(req, resp);
     }
 
-    @Override
-    public void processPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void Post(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         processRequest(req, resp);
     }
 
-    @Override
-    public void processGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void Get(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         processRequest(req, resp);
         }
 }

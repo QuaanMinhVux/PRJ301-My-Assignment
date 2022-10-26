@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Account;
+import model.Feature;
 import model.Role;
 import model.Student;
 
@@ -36,21 +37,41 @@ public class AccountDBContext extends DBContext<Account> {
             Account acc = null;
             Role currentRole = new Role();
             currentRole.setRid(-1);
-            while(rs.next()){
-                if(acc == null){
+            while (rs.next()) {
+                if (acc == null) {
                     acc = new Account();
                     acc.setUsername(rs.getString("username"));
                     acc.setDisplayname(rs.getString("displayname"));
                     Role r = new Role();
                     r.setRid(rs.getInt("rid"));
                     r.setRname(rs.getString("rname"));
-                    acc.setRole(currentRole);
+                    acc.setRole(r);
                 }
                 int fid = rs.getInt("fid");
-                if(fid != 0){
-                    
+                if (fid != 0) {
+                    Feature f = new Feature();
+                    f.setFid(rs.getInt("fid"));
+                    f.setFname(rs.getString("fname"));
+                    f.setUrl(rs.getString("url"));
+                    acc.getRole().getFeature().add(f);
+                }
+                if (acc.getRole().getRid() == 1) {
+                    String student_sql = "select s.stdid, s.stdname, s.username from Student s inner join [Account] a on s.username = a.username\n"
+                            + "left join [Role] r on r.rid = a.rid \n"
+                            + "where r.rid = 1 and a.username = ?";
+                    PreparedStatement student_stm = connection.prepareStatement(student_sql);
+                    student_stm.setString(1, username);
+                    ResultSet student_rs = student_stm.executeQuery();
+                    if(student_rs.next()){
+                        Student s = new Student();
+                        s.setId(student_rs.getInt("stdid"));
+                        s.setName(student_rs.getString("stdname"));
+                        acc.setStudent(s);
+                    }
                 }
             }
+           
+            return acc;
         } catch (SQLException ex) {
             Logger.getLogger(AccountDBContext.class.getName()).log(Level.SEVERE, null, ex);
         } finally {

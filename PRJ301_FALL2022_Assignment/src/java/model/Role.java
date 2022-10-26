@@ -14,6 +14,15 @@ public class Role {
     private int rid;
     private String rname;
     private ArrayList<Account> account = new ArrayList<>();
+    private ArrayList<Feature> feature = new ArrayList<>();
+
+    public ArrayList<Feature> getFeature() {
+        return feature;
+    }
+
+    public void setFeature(ArrayList<Feature> feature) {
+        this.feature = feature;
+    }
 
     public int getRid() {
         return rid;

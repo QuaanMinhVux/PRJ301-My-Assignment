@@ -35,7 +35,6 @@ public class LoginController extends HttpServlet {
         Account account = db.get(username, password);
         if (account != null) {
             req.getSession().setAttribute("account", account);
-//            req.getRequestDispatcher("/student/timetable").forward(req, resp);
             resp.sendRedirect("student/timetable");
         } else {
             req.getRequestDispatcher("index.html").forward(req, resp);
