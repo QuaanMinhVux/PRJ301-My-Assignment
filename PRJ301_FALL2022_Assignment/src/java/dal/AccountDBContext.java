@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Account;
 import model.Feature;
+import model.Lecture;
 import model.Role;
 import model.Student;
 
@@ -62,15 +63,28 @@ public class AccountDBContext extends DBContext<Account> {
                     PreparedStatement student_stm = connection.prepareStatement(student_sql);
                     student_stm.setString(1, username);
                     ResultSet student_rs = student_stm.executeQuery();
-                    if(student_rs.next()){
+                    if (student_rs.next()) {
                         Student s = new Student();
                         s.setId(student_rs.getInt("stdid"));
                         s.setName(student_rs.getString("stdname"));
                         acc.setStudent(s);
                     }
                 }
+                if (acc.getRole().getRid() == 2) {
+                    String lecture_sql = "select l.lid, l.lname from [Lecturer] l inner join [Account] a on l.username = a.username\n"
+                            + "where a.username = ?";
+                    PreparedStatement lecture_stm = connection.prepareStatement(lecture_sql);
+                    lecture_stm.setString(1, username);
+                    ResultSet lecture_rs = lecture_stm.executeQuery();
+                    if(lecture_rs.next()){
+                        Lecture l = new Lecture();
+                        l.setId(lecture_rs.getInt("lid"));
+                        l.setName(lecture_rs.getString("lname"));
+                        acc.setLecture(l);
+                    }
+                }
             }
-           
+
             return acc;
         } catch (SQLException ex) {
             Logger.getLogger(AccountDBContext.class.getName()).log(Level.SEVERE, null, ex);

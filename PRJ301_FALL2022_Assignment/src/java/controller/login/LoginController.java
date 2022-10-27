@@ -35,9 +35,16 @@ public class LoginController extends HttpServlet {
         Account account = db.get(username, password);
         if (account != null) {
             req.getSession().setAttribute("account", account);
-            resp.sendRedirect("student/timetable");
+            if (account.getRole().getRid() == 1) {
+                resp.sendRedirect("student/timetable");
+            }
+            if(account.getRole().getRid() == 2){
+                resp.sendRedirect("lecture/timetable");
+            }
+            
+
         } else {
-            req.getRequestDispatcher("index.html").forward(req, resp);
+            resp.sendRedirect("index.html");
         }
     }
 }

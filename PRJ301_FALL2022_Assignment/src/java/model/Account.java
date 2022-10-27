@@ -13,7 +13,16 @@ public class Account {
     private String password;
     private String displayname;
     private Student student;
+    private Lecture lecture;
     private Role role;
+
+    public Lecture getLecture() {
+        return lecture;
+    }
+
+    public void setLecture(Lecture lecture) {
+        this.lecture = lecture;
+    }
 
     public Role getRole() {
         return role;
