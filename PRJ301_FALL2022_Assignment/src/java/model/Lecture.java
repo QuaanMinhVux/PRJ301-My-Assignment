@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class Lecture {
     private int id;
     private String name;
-    private ArrayList<Group> group;
+    private ArrayList<Group> group = new ArrayList<>();
 
     public int getId() {
         return id;

@@ -46,7 +46,6 @@ public class TimetableController extends BaseRoleAuthentication {
         ArrayList<Date> day = dth.getDate(now.getFrom(), now.getTo());
         req.setAttribute("student", s);
         req.setAttribute("day", day);
-        req.setAttribute("student", s);
         req.setAttribute("now", now.getWeek());
         req.setAttribute("week", week);
         req.getRequestDispatcher("../view/student/timetable.jsp").forward(req, resp);
