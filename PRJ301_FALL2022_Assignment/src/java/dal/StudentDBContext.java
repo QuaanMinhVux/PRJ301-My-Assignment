@@ -82,7 +82,7 @@ public class StudentDBContext extends DBContext<Student> {
                 s.getGroup().add(g);
             }
 
-            String sql1 = "select se.sesid, se.gid, se.[date], se.attanded, r.rid, r.rname, t.tid, t.[from], t.[to]\n"
+            String sql1 = "select se.sesid, se.[index], se.gid, se.[date], se.attanded, r.rid, r.rname, t.tid, t.[from], t.[to]\n"
                     + "from [Session] se\n"
                     + "inner join Room r on r.rid = se.rid\n"
                     + "inner join TimeSlot t on t.tid = se.tid\n"
@@ -103,6 +103,7 @@ public class StudentDBContext extends DBContext<Student> {
                             t.setTo(rs_se.getTime("to"));
 
                             Session se = new Session();
+                            se.setIndex(rs_se.getInt("index"));
                             se.setId(rs_se.getInt("sesid"));
                             se.setDate(rs_se.getDate("date"));
                             se.setAttended(rs_se.getBoolean("attanded"));

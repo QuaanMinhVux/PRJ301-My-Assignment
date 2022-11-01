@@ -41,12 +41,7 @@ public class DateTimeHelper {
         return new java.sql.Date(d.getTime());
     }
 
-    public static int getDayofWeek(java.util.Date d) {
-        Calendar c = Calendar.getInstance();
-        c.setTime(d);
-        int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
-        return dayOfWeek;
-    }
+   
     
     public static Date addDays(java.util.Date d, int days)
     {
@@ -74,32 +69,7 @@ public class DateTimeHelper {
         return dates;
     }
     
-    public static String getDayNameofWeek(java.sql.Date s) {
-        java.util.Date d = toDateUtil(s);
-        Calendar c = Calendar.getInstance();
-        c.setTime(d);
-        int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
-        switch(dayOfWeek)
-        {
-            case 1: return "Sun";
-            case 2: return "Mon";
-            case 3: return "Tue";
-            case 4: return "Wed";
-            case 5: return "Thu";
-            case 6: return "Fri";
-            case 7: return "Sat";
-        }
-        return "Error";
-    }
-    
-    public static int compare(java.sql.Date a, java.sql.Date b)
-    {
-       
-        Date e_a = toDateUtil(a);
-        Date e_b = toDateUtil(b);
-         System.out.println(a + " " + b +" " +e_a.compareTo(e_b));
-        return e_a.compareTo(e_b);
-    }
+   
      
 
 }

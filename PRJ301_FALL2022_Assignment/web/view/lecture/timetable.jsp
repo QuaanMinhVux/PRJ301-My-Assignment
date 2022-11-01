@@ -1,4 +1,4 @@
-<%-- 
+ <%-- 
     Document   : timetable
     Created on : Oct 16, 2022, 11:46:51 PM
     Author     : MSI_GF63
@@ -26,6 +26,7 @@
             </select>
             <input type="submit" value="Submit"/>
         </form>
+            
         <table border="1px">
             <thead>
                 <tr>

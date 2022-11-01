@@ -58,7 +58,6 @@ public class TimetableController extends BaseRoleAuthentication{
         req.setAttribute("now", now.getWeek());
         req.setAttribute("week", week);
         req.getRequestDispatcher("../view/lecture/timetable.jsp").forward(req, resp);
-        resp.getWriter().println(day);
     }
     
 }

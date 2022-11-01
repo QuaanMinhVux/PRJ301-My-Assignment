@@ -27,7 +27,7 @@ public class GroupDBContext extends DBContext<Group> {
 
     public Group get(int id, Account acc) {
         try {
-            String sql = "select g.gid, g.gname, su.subname, su.subslot, l.lid, l.lname, r.rname, ts.[from], ts.[to], ss.[date], ss.attanded, a.present, a.[description]  from [Group] g \n"
+            String sql = "select g.gid, g.gname, su.subname, su.subslot, l.lid, l.lname, r.rname, ts.tid, ts.[from], ts.[to], ss.[date], ss.attanded, ss.[index], a.present, a.[description]  from [Group] g \n"
                     + "inner join [Student_Group] sg on g.gid = sg.gid\n"
                     + "inner join [Student] s on s.stdid = sg.stdid\n"
                     + "inner join [Session] ss on ss.gid = g.gid\n"
@@ -59,6 +59,7 @@ public class GroupDBContext extends DBContext<Group> {
                     g.setLecture(l);
                 }
                 Session se = new Session();
+                se.setIndex(rs.getInt("index"));
                 se.setDate(rs.getDate("date"));
                 se.setAttended(rs.getBoolean("attanded"));
 
@@ -67,6 +68,7 @@ public class GroupDBContext extends DBContext<Group> {
                 se.setRoom(r);
                 
                 Time_Slot ts = new Time_Slot();
+                ts.setId(rs.getInt("tid"));
                 ts.setFrom(rs.getTime("from"));
                 ts.setTo(rs.getTime("to"));
                 se.setT(ts);

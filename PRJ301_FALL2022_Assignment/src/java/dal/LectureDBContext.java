@@ -72,7 +72,7 @@ public class LectureDBContext extends DBContext<Lecture> {
             String session_sql = "select se.sesid, se.gid, se.[date], se.attanded, r.rid, r.rname, w.wid, w.[week], t.tid, t.[from], t.[to]\n"
                     + "from [Session] se\n"
                     + "inner join Room r on r.rid = se.rid\n"
-                    + "inner join [Week] w on w.wid = se.wid\n"
+                    + "left join [Week] w on w.wid = se.wid\n"
                     + "inner join TimeSlot t on t.tid = se.tid";
             PreparedStatement session_stm = connection.prepareStatement(session_sql);
             ResultSet session_rs = session_stm.executeQuery();

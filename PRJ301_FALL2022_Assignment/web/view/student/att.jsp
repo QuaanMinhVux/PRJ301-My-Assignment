@@ -21,6 +21,7 @@
         <table border="1px">
             <thead>
                 <tr>
+                    <th>No</th>
                     <th>Date</th>
                     <th>Slot</th>
                     <th>Room</th>
@@ -31,8 +32,9 @@
             <tbody>
                 <c:forEach items="${requestScope.group.sessions}" var="s">
                     <tr>
+                        <td>${s.index}</td>
                         <td>${s.date}</td>
-                        <td>${s.t.from}-${s.t.to}</td>
+                        <td>Slot ${s.t.id} (${s.t.from}-${s.t.to})</td>
                         <td>${s.room.name}</td>
                         <c:if test="${s.attended}">
                             <c:if test="${s.att.get(0).present}">
