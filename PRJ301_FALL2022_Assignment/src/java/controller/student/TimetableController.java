@@ -6,6 +6,7 @@ package controller.student;
 
 import controller.login.BaseAuthenticationController;
 import controller.login.BaseRoleAuthentication;
+import dal.SessionDBContext;
 import dal.StudentDBContext;
 import dal.WeekDBContext;
 import jakarta.servlet.ServletException;
@@ -19,6 +20,7 @@ import java.time.temporal.WeekFields;
 import java.util.ArrayList;
 import java.util.Locale;
 import model.Account;
+import model.Session;
 import model.Student;
 import model.Week;
 import util.DateTimeHelper;
@@ -32,7 +34,6 @@ public class TimetableController extends BaseRoleAuthentication {
     void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Account acc = (Account) req.getSession().getAttribute("account");
         String w = req.getParameter("week");
-        DateTimeHelper dth = new DateTimeHelper();
         WeekDBContext wdb = new WeekDBContext();
         ArrayList<Week> week = wdb.list();
         Week now = new Week();
@@ -43,7 +44,7 @@ public class TimetableController extends BaseRoleAuthentication {
         }
         StudentDBContext sdb = new StudentDBContext();
         Student s = sdb.get(acc.getStudent().getId());
-        ArrayList<Date> day = dth.getDate(now.getFrom(), now.getTo());
+        ArrayList<Date> day = DateTimeHelper.getDateList(now.getFrom(), now.getTo());
         req.setAttribute("student", s);
         req.setAttribute("day", day);
         req.setAttribute("now", now.getWeek());
@@ -51,11 +52,13 @@ public class TimetableController extends BaseRoleAuthentication {
         req.getRequestDispatcher("../view/student/timetable.jsp").forward(req, resp);
     }
 
+    @Override
     public void Post(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         processRequest(req, resp);
     }
 
+    @Override
     public void Get(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         processRequest(req, resp);
-        }
+    }
 }

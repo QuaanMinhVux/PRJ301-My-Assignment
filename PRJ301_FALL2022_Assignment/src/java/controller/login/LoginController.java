@@ -20,15 +20,10 @@ public class LoginController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        processRequest(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        processRequest(req, resp);
-    }
-
-    void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
         AccountDBContext db = new AccountDBContext();
@@ -47,4 +42,6 @@ public class LoginController extends HttpServlet {
             resp.sendRedirect("index.html");
         }
     }
+
+   
 }

@@ -50,12 +50,15 @@ public class TimetableController extends BaseRoleAuthentication{
         }
         LectureDBContext ldb = new LectureDBContext();
         Lecture l = ldb.get(acc.getLecture().getId());
-        ArrayList<Date> day = dth.getDate(now.getFrom(), now.getTo());
+        Date from = now.getFrom();
+        Date to = now.getTo();
+        ArrayList<Date> day = DateTimeHelper.getDateList(from, to);
         req.setAttribute("lecture", l);
         req.setAttribute("day", day);
         req.setAttribute("now", now.getWeek());
         req.setAttribute("week", week);
         req.getRequestDispatcher("../view/lecture/timetable.jsp").forward(req, resp);
+        resp.getWriter().println(day);
     }
     
 }

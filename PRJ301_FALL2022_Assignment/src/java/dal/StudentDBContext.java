@@ -82,24 +82,20 @@ public class StudentDBContext extends DBContext<Student> {
                 s.getGroup().add(g);
             }
 
-            String sql1 = "select se.sesid, se.gid, se.[date], se.attanded, r.rid, r.rname, w.wid, w.[week], t.tid, t.[from], t.[to]\n"
+            String sql1 = "select se.sesid, se.gid, se.[date], se.attanded, r.rid, r.rname, t.tid, t.[from], t.[to]\n"
                     + "from [Session] se\n"
                     + "inner join Room r on r.rid = se.rid\n"
-                    + "inner join [Week] w on w.wid = se.wid\n"
-                    + "inner join TimeSlot t on t.tid = se.tid";
+                    + "inner join TimeSlot t on t.tid = se.tid\n"
+                    + "where gid = ?";
             PreparedStatement stm_se = connection.prepareStatement(sql1);
-            ResultSet rs_se = stm_se.executeQuery();
             
-                while (rs_se.next()) {
-                    for (Group group : s.getGroup()) {
-                        if (group.getId() == rs_se.getInt("gid")) {
-                            Room r = new Room();
+            for (Group group : s.getGroup()) {
+                stm_se.setInt(1, group.getId());
+                ResultSet rs_se = stm_se.executeQuery();
+                 while(rs_se.next()){
+                     Room r = new Room();
                             r.setId(rs_se.getInt("rid"));
                             r.setName(rs_se.getString("rname"));
-
-                            Week w = new Week();
-                            w.setId(rs_se.getInt("wid"));
-                            w.setWeek(rs_se.getInt("week"));
 
                             Time_Slot t = new Time_Slot();
                             t.setId(rs_se.getInt("tid"));
@@ -112,12 +108,11 @@ public class StudentDBContext extends DBContext<Student> {
                             se.setAttended(rs_se.getBoolean("attanded"));
                             se.setRoom(r);
                             se.setT(t);
-                            se.setW(w);
 
                             group.getSessions().add(se);
-                        }
-                    }
-                }
+                 }
+            }
+               
             
         } catch (SQLException ex) {
             Logger.getLogger(StudentDBContext.class.getName()).log(Level.SEVERE, null, ex);
