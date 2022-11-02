@@ -55,7 +55,7 @@
                                     <c:forEach items="${g.sessions}" var="s">
                                         <c:if test="${s.date eq d}">
                                             <c:if test="${s.t.id eq i}">
-                                                <a href="../student/attendance?id=${g.id}">${g.subject.name} at ${s.room.name}</a>     
+                                                <a href="../lecture/takeatt?id=${s.id}">${g.subject.name} at ${s.room.name}</a>     
                                             </c:if>
                                         </c:if>	 
                                     </c:forEach>
