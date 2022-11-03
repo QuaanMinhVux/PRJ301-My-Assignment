@@ -22,11 +22,15 @@ public class AttendanceController extends BaseRoleAuthentication {
 
     @Override
     public void Post(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        processRequest(req, resp);
     }
 
     @Override
     public void Get(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int gid = Integer.parseInt(req.getParameter("id"));
+        processRequest(req, resp);
+    }
+    void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+         int gid = Integer.parseInt(req.getParameter("id"));
         Account acc = (Account) req.getSession().getAttribute("account");
         GroupDBContext gdb = new GroupDBContext();
         Group g = gdb.get(gid, acc);
@@ -34,7 +38,6 @@ public class AttendanceController extends BaseRoleAuthentication {
         req.setAttribute("absent", absent);
         req.setAttribute("group", g);
         req.getRequestDispatcher("../view/student/att.jsp").forward(req, resp);
-        
     }
     int getAbsent(Group g){
         int count = 0;

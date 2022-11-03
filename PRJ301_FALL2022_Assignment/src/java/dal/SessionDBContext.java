@@ -33,12 +33,12 @@ public class SessionDBContext extends DBContext<Session> {
     public void update(Session model) {
         try {
             connection.setAutoCommit(false);
-            String sql = "UPDATE [Session]\n"
+            String sql_update = "UPDATE [Session]\n"
                     + "   SET [attanded] = 1\n"
                     + " WHERE sesid = ?";
-            PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setInt(1, model.getId());
-            stm.executeUpdate();
+            PreparedStatement stm_update = connection.prepareStatement(sql_update);
+            stm_update.setInt(1, model.getId());
+            stm_update.executeUpdate();
 
             String sql_delete = "DELETE [Attandance]\n"
                     + "      WHERE sesid = ?";
@@ -98,7 +98,7 @@ public class SessionDBContext extends DBContext<Session> {
                     + "inner join [Lecturer] l on l.lid = g.lid\n"
                     + "inner join [Student_Group] sg on sg.gid = g.gid\n"
                     + "inner join [Student] s on s.stdid = sg.stdid\n"
-                    + "left join [Attandance] a on a.stdid = s.stdid\n"
+                    + "left join [Attandance] a on a.sesid = se.sesid and a.stdid = s.stdid\n"
                     + "where se.sesid = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, id);

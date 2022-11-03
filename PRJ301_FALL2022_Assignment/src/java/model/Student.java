@@ -15,7 +15,7 @@ public class Student {
     private int id;
     private String name;
     private ArrayList<Group> group = new ArrayList<>();
-    private ArrayList<Attendance> att;
+    private ArrayList<Attendance> att = new ArrayList<>();
     private Account account;
 
     public Account getAccount() {

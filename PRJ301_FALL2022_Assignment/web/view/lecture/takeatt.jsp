@@ -19,6 +19,7 @@
         <p>Lecture: ${sessionScope.session.group.lecture.name}</p>
         <p>Room: ${sessionScope.session.room.name}</p>
         <p>Date: ${sessionScope.session.date}</p>
+        <p>Click <a href="attreport?id=${sessionScope.session.group.id}">here</a> to show attendence report</p>
         <form action="takeatt" method="POST">
             <table border="1px">
                 <thead>

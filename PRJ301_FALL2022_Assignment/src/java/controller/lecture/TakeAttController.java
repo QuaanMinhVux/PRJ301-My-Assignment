@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Attendance;
 import model.Session;
+import util.DateTimeHelper;
 
 /**
  *
@@ -28,7 +29,7 @@ public class TakeAttController extends BaseRoleAuthentication {
 
     @Override
     public void Post(jakarta.servlet.http.HttpServletRequest req, jakarta.servlet.http.HttpServletResponse resp) throws jakarta.servlet.ServletException, IOException {
-        Session s = (Session)req.getSession().getAttribute("session");
+        Session s = (Session) req.getSession().getAttribute("session");
         for (Attendance att : s.getAtt()) {
             att.setPresent(req.getParameter("present" + att.getStudent().getId()).equals("present"));
             att.setDescription(req.getParameter("comment" + att.getStudent().getId()));
@@ -44,8 +45,13 @@ public class TakeAttController extends BaseRoleAuthentication {
         int seid = Integer.parseInt(req.getParameter("id"));
         SessionDBContext sdb = new SessionDBContext();
         Session session = sdb.get(seid);
-        req.getSession().setAttribute("session", session);
-        req.getRequestDispatcher("../view/lecture/takeatt.jsp").forward(req, resp);
+        if (DateTimeHelper.isDay(session.getDate())) {
+            req.getSession().setAttribute("session", session);
+            req.getRequestDispatcher("../view/lecture/takeatt.jsp").forward(req, resp);
+        } else {
+            resp.getWriter().println("Access denied");
+        }
+
     }
 
 }
