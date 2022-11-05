@@ -12,36 +12,50 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <style>
-#customers {
-  font-family: Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
+            #customers {
+                font-family: Arial, Helvetica, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+            }
 
-#customers td, #customers th {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
+            #customers td, #customers th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
 
-#customers tr:nth-child(even){background-color: #f2f2f2;}
+            #customers tr:nth-child(even){
+                background-color: #f2f2f2;
+            }
 
-#customers tr:hover {background-color: #ddd;}
+            #customers tr:hover {
+                background-color: #ddd;
+            }
 
-#customers th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #04AA6D;
-  color: white;
-}
-</style>
+            #customers th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #3333ff;
+                color: white;
+            }
+            #td{
+                width: 180px;
+            }
+            #div {
+                font-family: Arial, Helvetica, sans-serif;
+                width: 100%;
+                align-content: center;
+            }
+        </style>
     </head>
     <body>
-        <p>Attendance report</p>
-        <p>Student: ${sessionScope.account.student.name}</p>
-        <p>Subject:  ${requestScope.group.subject.name}</p>
-        <p>Group: ${requestScope.group.name}</p>
-        <p>Lecture: ${requestScope.group.lecture.name}</p>
+        <div id="div">
+            <p>Attendance report</p>
+            <p>Student: ${sessionScope.account.student.name}</p>
+            <p>Subject:  ${requestScope.group.subject.name}</p>
+            <p>Group: ${requestScope.group.name}</p>
+            <p>Lecture: ${requestScope.group.lecture.name}</p>
+        </div>
         <table id="customers" border="1px">
             <thead>
                 <tr>
@@ -55,7 +69,7 @@
             </thead>
             <tbody>
                 <c:forEach items="${requestScope.group.sessions}" var="s">
-                    <tr>
+                    <tr id="td">
                         <td>${s.index}</td>
                         <td>${s.date}</td>
                         <td>Slot ${s.t.id} (${s.t.from}-${s.t.to})</td>
@@ -81,6 +95,6 @@
                 </c:forEach>
             </tbody>
         </table>
-        <p>Absent: ${Math.round((requestScope.absent / requestScope.group.subject.slot * 100))}% so far (${requestScope.absent} on ${requestScope.group.subject.slot} total) </p>
+        <p id="div">Absent: ${Math.round((requestScope.absent / requestScope.group.subject.slot * 100))}% so far (${requestScope.absent} on ${requestScope.group.subject.slot} total) </p>
     </body>
 </html>

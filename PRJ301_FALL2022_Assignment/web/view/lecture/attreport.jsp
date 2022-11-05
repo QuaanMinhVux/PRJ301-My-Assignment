@@ -12,35 +12,50 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <style>
-#customers {
-  font-family: Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
+            #customers {
+                font-family: Arial, Helvetica, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+            }
 
-#customers td, #customers th {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
+            #customers td, #customers th {
+                border: 1px solid #ddd;
+                padding: 8px;
+                width: 100%;
+            }
 
-#customers tr:nth-child(even){background-color: #f2f2f2;}
+            #customers tr:nth-child(even){
+                background-color: #f2f2f2;
+            }
 
-#customers tr:hover {background-color: #ddd;}
+            #customers tr:hover {
+                background-color: #ddd;
+            }
 
-#customers th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #04AA6D;
-  color: white;
-}
-</style>
+            #customers th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #3333ff;
+                color: white;
+            }
+            #td{
+                width: 180px;
+            }
+            #div {
+                font-family: Arial, Helvetica, sans-serif;
+                width: 100%;
+                align-content: center;
+            }
+        </style>
     </head>
     <body>
-        <p>Group ID: ${requestScope.group.id}</p>
-        <p>Group Name: ${requestScope.group.name}</p>
-        <p>Subject: ${requestScope.group.subject.name}</p>
 
+        <div id="div">
+            <p>Group ID: ${requestScope.group.id}</p>
+            <p>Group Name: ${requestScope.group.name}</p>
+            <p>Subject: ${requestScope.group.subject.name}</p>
+        </div>
         <table id="customers" border="1px">
             <thead>
                 <tr>
@@ -48,7 +63,7 @@
                         <c:forEach items="${requestScope.group.students.get(0).att}" var="a">
                         <th>${a.session.date}</th>
                         </c:forEach>
-                        <th>Total absent</th>
+                    <th>Total absent</th>
                 </tr>
             </thead>
             <tbody>
@@ -69,13 +84,13 @@
                                     F
                                 </c:if>       
                             </td>
-                            
+
                         </c:forEach> 
-                            <td>${Math.round(s.absent / requestScope.group.subject.slot * 100)} %</td>
+                        <td>${Math.round(s.absent / requestScope.group.subject.slot * 100)} %</td>
                     </tr>
                 </c:forEach>
             </tbody>
         </table>
-        <p>P: Present, A: Absent, F: Future</p>
+        <p id="div">P: Present, A: Absent, F: Future</p>
     </body>
 </html>

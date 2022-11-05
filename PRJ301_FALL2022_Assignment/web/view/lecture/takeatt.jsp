@@ -12,38 +12,49 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <style>
-#customers {
-  font-family: Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
+            #customers {
+                font-family: Arial, Helvetica, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+            }
 
-#customers td, #customers th {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
+            #customers td, #customers th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
 
-#customers tr:nth-child(even){background-color: #f2f2f2;}
+            #customers tr:nth-child(even){
+                background-color: #f2f2f2;
+            }
 
-#customers tr:hover {background-color: #ddd;}
+            #customers tr:hover {
+                background-color: #ddd;
+            }
 
-#customers th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #04AA6D;
-  color: white;
-}
-</style>
+            #customers th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #3333ff;
+                color: white;
+            }
+            #div {
+                font-family: Arial, Helvetica, sans-serif;
+                width: 100%;
+                align-content: center;
+            }
+        </style>
     </head>
     <body>
-        <p>Session id: ${sessionScope.session.id}</p>
-        <p>Subject: ${sessionScope.session.group.subject.name}</p>
-        <p>Group: ${sessionScope.session.group.name}</p>
-        <p>Lecture: ${sessionScope.session.group.lecture.name}</p>
-        <p>Room: ${sessionScope.session.room.name}</p>
-        <p>Date: ${sessionScope.session.date}</p>
-        <p>Click <a href="attreport?id=${sessionScope.session.group.id}">here</a> to show attendence report</p>
+        <div id="div">
+            <p>Session id: ${sessionScope.session.id}</p>
+            <p>Subject: ${sessionScope.session.group.subject.name}</p>
+            <p>Group: ${sessionScope.session.group.name}</p>
+            <p>Lecture: ${sessionScope.session.group.lecture.name}</p>
+            <p>Room: ${sessionScope.session.room.name}</p>
+            <p>Date: ${sessionScope.session.date}</p>
+            <p>Click <a href="attreport?id=${sessionScope.session.group.id}">here</a> to show attendence report</p>
+        </div>
         <form action="takeatt" method="POST">
             <table id="customers" border="1px">
                 <thead>
@@ -62,12 +73,12 @@
                             <td>${a.student.name}</td>
                             <td>
                                 <input type="radio" <c:if test="${a.present}">checked="checked"</c:if> name="present${a.student.id}" value="present"/>
-                            </td>
-                            <td>
-                                <input type="radio" <c:if test="${!a.present}">checked="checked"</c:if> name="present${a.student.id}" value="absent"/>
-                            </td>
-                            <td>
-                                <input type="text" name="comment${a.student.id}" value="${a.description}"/>
+                                </td>
+                                <td>
+                                    <input type="radio" <c:if test="${!a.present}">checked="checked"</c:if> name="present${a.student.id}" value="absent"/>
+                                </td>
+                                <td>
+                                    <input type="text" name="comment${a.student.id}" value="${a.description}"/>
                             </td>
                         </tr>
                     </c:forEach>
