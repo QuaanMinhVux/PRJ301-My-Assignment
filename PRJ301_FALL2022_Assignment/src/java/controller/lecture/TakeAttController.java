@@ -30,14 +30,20 @@ public class TakeAttController extends BaseRoleAuthentication {
     @Override
     public void Post(jakarta.servlet.http.HttpServletRequest req, jakarta.servlet.http.HttpServletResponse resp) throws jakarta.servlet.ServletException, IOException {
         Session s = (Session) req.getSession().getAttribute("session");
-        for (Attendance att : s.getAtt()) {
-            att.setPresent(req.getParameter("present" + att.getStudent().getId()).equals("present"));
-            att.setDescription(req.getParameter("comment" + att.getStudent().getId()));
+        if (DateTimeHelper.isDay(s.getDate())) {
+            for (Attendance att : s.getAtt()) {
+                att.setPresent(req.getParameter("present" + att.getStudent().getId()).equals("present"));
+                att.setDescription(req.getParameter("comment" + att.getStudent().getId()));
+            }
+            req.getSession().removeAttribute("session");
+            SessionDBContext db = new SessionDBContext();
+            db.update(s);
+            resp.sendRedirect("takeatt?id=" + s.getId());
+        } else {
+            resp.getWriter().println("Access denied");
+
         }
-        req.getSession().removeAttribute("session");
-        SessionDBContext db = new SessionDBContext();
-        db.update(s);
-        resp.sendRedirect("takeatt?id=" + s.getId());
+
     }
 
     @Override
@@ -45,13 +51,7 @@ public class TakeAttController extends BaseRoleAuthentication {
         int seid = Integer.parseInt(req.getParameter("id"));
         SessionDBContext sdb = new SessionDBContext();
         Session session = sdb.get(seid);
-        if (DateTimeHelper.isDay(session.getDate())) {
-            req.getSession().setAttribute("session", session);
-            req.getRequestDispatcher("../view/lecture/takeatt.jsp").forward(req, resp);
-        } else {
-            resp.getWriter().println("Access denied");
-        }
-
+        req.getSession().setAttribute("session", session);
+        req.getRequestDispatcher("../view/lecture/takeatt.jsp").forward(req, resp);
     }
-
 }

@@ -5,12 +5,17 @@
 package controller.lecture;
 
 import controller.login.BaseRoleAuthentication;
+import dal.GroupDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Attendance;
+import model.Group;
+import model.Student;
 
 /**
  *
@@ -32,8 +37,28 @@ public class AttendenceReportController extends BaseRoleAuthentication {
     public void Get(jakarta.servlet.http.HttpServletRequest req, jakarta.servlet.http.HttpServletResponse resp) throws jakarta.servlet.ServletException, IOException {
         processRequest(req, resp);
     }
-    
-    void processRequest(jakarta.servlet.http.HttpServletRequest req, jakarta.servlet.http.HttpServletResponse resp) throws jakarta.servlet.ServletException, IOException{
-        
+
+    void processRequest(jakarta.servlet.http.HttpServletRequest req, jakarta.servlet.http.HttpServletResponse resp) throws jakarta.servlet.ServletException, IOException {
+        GroupDBContext db = new GroupDBContext();
+        int gid = Integer.parseInt(req.getParameter("id"));
+        Group g = db.get(gid);
+        for (Student student : g.getStudents()) {
+            int absent = getAbsent(student);
+            student.setAbsent(absent);
+        }
+        req.setAttribute("group", g);
+        req.getRequestDispatcher("../view/lecture/attreport.jsp").forward(req, resp);
+    }
+
+    int getAbsent(Student s) {
+        int count = 0;
+        for (Attendance a : s.getAtt()) {
+            if (a.getSession().isAttended()) {
+                if (!a.isPresent()) {
+                    count++;
+                }
+            }
+        }
+        return count;
     }
 }

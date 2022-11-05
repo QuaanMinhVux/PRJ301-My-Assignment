@@ -16,6 +16,7 @@ import model.Group;
 import model.Lecture;
 import model.Room;
 import model.Session;
+import model.Student;
 import model.Subject;
 import model.Time_Slot;
 
@@ -66,18 +67,18 @@ public class GroupDBContext extends DBContext<Group> {
                 Room r = new Room();
                 r.setName(rs.getString("rname"));
                 se.setRoom(r);
-                
+
                 Time_Slot ts = new Time_Slot();
                 ts.setId(rs.getInt("tid"));
                 ts.setFrom(rs.getTime("from"));
                 ts.setTo(rs.getTime("to"));
                 se.setT(ts);
-                
+
                 Attendance att = new Attendance();
                 att.setPresent(rs.getBoolean("present"));
                 att.setDescription(rs.getString("description"));
                 se.getAtt().add(att);
-                
+
                 g.getSessions().add(se);
             }
             return g;
@@ -104,7 +105,60 @@ public class GroupDBContext extends DBContext<Group> {
 
     @Override
     public Group get(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            String sql = "select g.gid, g.gname, sub.subname, sub.subslot, s.stdid, s.stdname\n"
+                    + "from [Group] g \n"
+                    + "inner join [Student_Group] sg on g.gid = sg.gid\n"
+                    + "inner join [Subject] sub on sub.subid = g.subid\n"
+                    + "inner join [Student] s on s.stdid = sg.stdid\n"
+                    + "where g.gid = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, id);
+            ResultSet rs = stm.executeQuery();
+            Group g = new Group();
+            int gid = -1;
+            while (rs.next()) {
+                if (gid == -1) {
+                    gid = rs.getInt("gid");
+                    g.setId(gid);
+                    g.setName(rs.getString("gname"));
+
+                    Subject sub = new Subject();
+                    sub.setName(rs.getString("subname"));
+                    sub.setSlot(rs.getInt("subslot"));
+                    g.setSubject(sub);
+                }
+                Student s = new Student();
+                s.setId(rs.getInt("stdid"));
+                s.setName(rs.getString("stdname"));
+                g.getStudents().add(s);
+            }
+            String sql1 = "select a.present, se.attanded, se.[date] from [Group] g inner join [Student_Group] sg on sg.gid = g.gid\n"
+                    + "inner join [Student] s on s.stdid = sg.stdid\n"
+                    + "inner join [Session] se on se.gid = g.gid\n"
+                    + "left join [Attandance] a on a.sesid = se.sesid and s.stdid = a.stdid\n"
+                    + "where g.gid = ? and s.stdid = ?";
+            PreparedStatement stm1 = connection.prepareStatement(sql1);
+            stm1.setInt(1, id);
+            for (Student student : g.getStudents()) {
+                stm1.setInt(2, student.getId());
+                ResultSet rs1 = stm1.executeQuery();
+                while (rs1.next()) {
+                    Attendance a = new Attendance();
+                    a.setPresent(rs1.getBoolean("present"));                    
+                    Session se = new Session();
+                    se.setDate(rs1.getDate("date"));
+                    se.setAttended(rs1.getBoolean("attanded"));
+                    a.setSession(se);
+                    
+                    student.getAtt().add(a);
+                }
+            }
+            return g;
+        } catch (SQLException ex) {
+            Logger.getLogger(GroupDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     @Override

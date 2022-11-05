@@ -17,6 +17,15 @@ public class Student {
     private ArrayList<Group> group = new ArrayList<>();
     private ArrayList<Attendance> att = new ArrayList<>();
     private Account account;
+    private int absent;
+
+    public int getAbsent() {
+        return absent;
+    }
+
+    public void setAbsent(int absent) {
+        this.absent = absent;
+    }
 
     public Account getAccount() {
         return account;
@@ -57,6 +66,5 @@ public class Student {
     public void setAtt(ArrayList<Attendance> att) {
         this.att = att;
     }
-    
 
 }
