@@ -56,6 +56,10 @@
         <servlet-name>AttendenceReportController</servlet-name>
         <url-pattern>/lecture/attreport</url-pattern>
     </servlet-mapping>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/err.jsp</location>
+    </error-page>
     <session-config>
         <session-timeout>
             30
