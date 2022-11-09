@@ -7,6 +7,7 @@ package controller.lecture;
 import controller.login.BaseRoleAuthentication;
 import dal.LectureDBContext;
 import dal.StudentDBContext;
+import dal.TimeslotDBContext;
 import dal.WeekDBContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 import model.Account;
 import model.Lecture;
 import model.Student;
+import model.Time_Slot;
 import model.Week;
 import util.DateTimeHelper;
 
@@ -53,6 +55,9 @@ public class TimetableController extends BaseRoleAuthentication{
         Date from = now.getFrom();
         Date to = now.getTo();
         ArrayList<Date> day = DateTimeHelper.getDateList(from, to);
+        TimeslotDBContext tdb = new TimeslotDBContext();
+        ArrayList<Time_Slot> ts = tdb.list();
+        req.setAttribute("slot", ts);
         req.setAttribute("lecture", l);
         req.setAttribute("day", day);
         req.setAttribute("now", now.getWeek());

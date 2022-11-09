@@ -84,15 +84,15 @@
                 </tr>
             </thead>
             <tbody>
-                <c:forEach var="i" begin="1" end="7">
+                <c:forEach items="${requestScope.slot}" var="ts">
                     <tr>
-                        <td>Slot ${i}</td>
+                        <td>Slot ${ts.id} (${ts.from} - ${ts.to}</td>
                         <c:forEach items="${requestScope.day}" var="d">
                             <td id="td">
                                 <c:forEach items="${requestScope.lecture.group}" var="g">
                                     <c:forEach items="${g.sessions}" var="s">
                                         <c:if test="${s.date eq d}">
-                                            <c:if test="${s.t.id eq i}">
+                                            <c:if test="${s.t.id eq ts.id}">
                                                 <a href="../lecture/takeatt?id=${s.id}">${g.subject.name} at ${s.room.name}</a>     
                                             </c:if>
                                         </c:if>	 
