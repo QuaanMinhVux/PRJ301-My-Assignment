@@ -20,6 +20,7 @@ public class LoginController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher("/index.html").forward(req, resp);
     }
 
     @Override
@@ -33,15 +34,13 @@ public class LoginController extends HttpServlet {
             if (account.getRole().getRid() == 1) {
                 resp.sendRedirect("student/timetable");
             }
-            if(account.getRole().getRid() == 2){
+            if (account.getRole().getRid() == 2) {
                 resp.sendRedirect("lecture/timetable");
             }
-            
 
         } else {
-            resp.sendRedirect("index.html");
+            req.getRequestDispatcher("/index.html").forward(req, resp);
         }
     }
 
-   
 }

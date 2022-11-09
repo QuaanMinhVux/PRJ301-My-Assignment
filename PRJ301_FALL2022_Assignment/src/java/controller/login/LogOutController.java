@@ -27,7 +27,7 @@ public class LogOutController extends HttpServlet{
     }
     void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getSession().removeAttribute("account");
-        resp.sendRedirect("index.html");
+        resp.sendRedirect("./login");
         
     }
     
